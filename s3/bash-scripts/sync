@@ -1,0 +1,46 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "== sync"
+
+# location for generated files
+OUTPUT_DIR="/tmp/s3-bash-scripts"
+
+# check for bucket name
+if [[ $# -lt 1 ]]; then
+    echo "Error: No bucket name provided."
+    echo "Usage: $0 <bucket-name>"
+    exit 1
+fi
+BUCKET_NAME="$1"
+
+# Safety guard: ensure OUTPUT_DIR is a subpath of /tmp
+if [[ "$OUTPUT_DIR" != /tmp/* ]]; then
+    echo "Refusing to remove non-/tmp path: $OUTPUT_DIR"
+    exit 1
+fi
+
+# Remove the directory if it exists (quietly), then recreate it
+rm -rf "$OUTPUT_DIR"
+mkdir -p "$OUTPUT_DIR"
+
+# Generate 9 files of 1 MiB each
+for ((i=1; i<=9; i++)); do
+    FILENAME="$OUTPUT_DIR/file_$i.txt"
+    dd if=/dev/urandom of="$FILENAME" bs=1M count=1 status=none
+done
+
+# Display contents (fallback if tree is not installed)
+if command -v tree >/dev/null 2>&1; then
+    tree "$OUTPUT_DIR"
+else
+    echo "tree not found; showing ls -l:"
+    ls -l "$OUTPUT_DIR"
+fi
+
+# Sync to S3 (creates s3://<bucket>/files and uploads)
+aws s3 sync "$OUTPUT_DIR" "s3://$BUCKET_NAME/files" \
+    --delete \
+    --only-show-errors
+
+echo "Sync complete: s3://$BUCKET_NAME/files"
