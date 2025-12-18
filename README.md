@@ -13,3 +13,13 @@ This codebase contains all AWS examples created through the 'AWS Certified Solut
 ### local/other setup
 - Install the aws cli on your machine https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html.
 - Configure the environment variables listed in `.env.example` based on your environment.
+- Install Go (latest stable from https://go.dev/dl/) and ensure it’s on your PATH.
+
+### how to run
+- Ensure AWS credentials are available (e.g., `AWS_PROFILE`/`AWS_REGION`) and environment variables from `.env.example` are set.
+- Verify AWS access:
+  - `aws sts get-caller-identity`
+- Run Go examples to see available commands (from the repo root):
+  - `go run .`
+- Command example, Create Bucket
+  - `go run . create --bucket <bucket_name> --region <region_name>`
