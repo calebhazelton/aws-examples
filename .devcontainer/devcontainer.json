@@ -1,5 +1,10 @@
 {
   "name": "aws-cli-env",
   "image": "mcr.microsoft.com/devcontainers/universal:2",
-  "postCreateCommand": "bash .devcontainer/install-aws-cli.sh"
+  "postCreateCommand": "bash .devcontainer/install-aws-cli.sh && /usr/local/go/bin/go install github.com/spf13/cobra-cli@latest",
+  
+  // Make sure cobra-cli is on PATH regardless of GOPATH location
+  "remoteEnv": {
+    "PATH": "${containerEnv:PATH}:/home/vscode/go/bin:/go/bin"
+  }
 }
