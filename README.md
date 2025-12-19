@@ -18,6 +18,7 @@ The contents of this repository include...
 ## Local/other setup
 ### For all demonstrations
 - Configure the environment variables listed in `.env.example` based on your environment.
+    - This can be done simply by writing to the terminal, eg. `export AWS_REGION="us-east-1"`
 
 ### For AWS CLI demonstrations
 - Install the aws cli on your machine https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html.
