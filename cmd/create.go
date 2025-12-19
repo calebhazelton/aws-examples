@@ -24,7 +24,7 @@ var (
 var createCmd = &cobra.Command{
 	Use:   "create",
 	Short: "Create an S3 bucket",
-	Long: `Creat an S3 bucket using AWS SDK for Go v2.
+	Long: `Create an S3 bucket using AWS SDK for Go v2.
 	
 	Parameters required --bucket, --region`,
 	RunE: func(cmd *cobra.Command, args []string) error {
