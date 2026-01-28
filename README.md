@@ -3,13 +3,15 @@ This codebase contains a variety of examples, demonstrating different ways to co
 1. The AWS Command Line Interface (CLI)
 2. The AWS Software Development Kit (SDK)
 3. Infrastructure as Code (IAC) tools
-    * These examples utilize Terraform and HCL
+    * Examples utilizing AWS CDK
+    * Examples utilizing CloudFormation
+    * Examples utilizing Terraform and HCL
 
 The contents of this repository include...
 - The devcontainer setup to copy dependencies in a separate workspace
 - The bash scripts demonstrating AWS CLI use for a particular service
 - The Go packages demonstrating AWS SDK use for a particular service
-- IAC
+- IAC examples for a particular service
 
 ## Github codespace setup
 - Configure all required github codespace secrets listed in `.env.example` to match your environment.
