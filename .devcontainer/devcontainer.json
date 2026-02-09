@@ -6,5 +6,10 @@
   // Make sure cobra-cli is on PATH regardless of GOPATH location
   "remoteEnv": {
     "PATH": "${containerEnv:PATH}:/home/vscode/go/bin:/go/bin"
+  },
+
+  // Devcontainer Marketplace
+  "features": {
+    "ghcr.io/devcontainers/features/terraform:1": {}
   }
 }
